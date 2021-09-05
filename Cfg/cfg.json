@@ -1,0 +1,35 @@
+{
+    "recall_the_fail_questions": true,
+    "num_of_questions": 8,
+    "time_duration_per_question": 20,
+    "cases": [
+        "Add",
+        "Subtract",
+        "Multiply",
+        "Divide"
+    ],
+    "Conditions": {
+        "Add": {
+            "max": 1000,
+            "min": 0,
+            "weight": 1
+        },
+        "Subtract": {
+            "max": 1000,
+            "min": 0,
+            "allow_negtive": false,
+            "weight": 2
+        },
+        "Multiply": {
+            "max": 10,
+            "min": 0,
+            "weight": 3
+        },
+        "Divide": {
+            "max": 100,
+            "min": 1,
+            "allow_float": false,
+            "weight": 4
+        }
+    }
+}
