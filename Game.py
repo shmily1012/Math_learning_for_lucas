@@ -84,6 +84,7 @@ class Game():
         self.sign = sign
         self.value2 = value2
         self.result = result
+        self.results_array = []
         return value1, sign, value2, result
 
     def getValuesForAdd(self):
@@ -103,6 +104,10 @@ class Game():
                 price = 2 * self.conditions[self.sign]['weight']
             else:
                 price = 1 * self.conditions[self.sign]['weight']
+            if len(self.results_array) != 0:
+                if self.results_array[-1]['status'] == True:
+                    price += self.results_array[-1]['price']
+            self.results_array.append({'status': True, 'price': price})
             self.score += price
             return True, price
         else:
@@ -118,7 +123,8 @@ class Game():
                 price = (self.getMaxWeight()+1 -
                          self.conditions[self.sign]['weight']) * 3
 
-            self.score += price
+            self.results_array.append({'status': False, 'price': price})
+            self.score -= price
             self.errorbook.addErrorBook(
                 self.value1, self.sign, self.value2, self.result)
             return False, price

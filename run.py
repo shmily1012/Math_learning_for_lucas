@@ -71,6 +71,11 @@ class Window(QMainWindow, Ui_MainWindow):
         self.confirmButton.setEnabled(True)
 
     def clickConfirmButton(self):
+        if self.game.is_done:
+            self.confirmButton.setEnabled(False)
+            self.lineEdit.setEnabled(False)
+            self.timer.stop()
+            self.pushButton_3.setEnabled(True)
         self.game.number_answer += 1
         try:
             current_result = int(self.lineEdit.text(), 10)
