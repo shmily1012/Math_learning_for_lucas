@@ -20,7 +20,7 @@ class ErrorBook:
         error_q = {'value1': value1,
                    'sign': sign,
                    'value2': value2,
-                   'results': result,
+                   'result': result,
                    'error_count': 1
                    }
         is_same_question = False
@@ -34,4 +34,4 @@ class ErrorBook:
 
     def uploadErrorBook(self):
         with open(self.filename, 'w') as fi:
-            json.dump(fi, self.qs)
+            json.dump(self.qs, fi)

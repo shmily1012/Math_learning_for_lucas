@@ -1,0 +1,16 @@
+[
+    {
+        "value1": 6,
+        "sign": "Multiply",
+        "value2": 10,
+        "result": 60,
+        "error_count": 3
+    },
+    {
+        "value1": 573,
+        "sign": "Subtract",
+        "value2": 197,
+        "result": 376,
+        "error_count": 1
+    }
+]

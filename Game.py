@@ -26,6 +26,7 @@ class Game():
         self.errorbook = ErrorBook()
         self.score = 0
         self.number_fail = 0
+        self.results_array = []
         self.number_answer = 0
         self.conditions = self.parameter['Conditions']
         self.single_question_duration = self.parameter['time_duration_per_question']
@@ -44,6 +45,10 @@ class Game():
         #             sign=case)
         #         self.wait_until()
         if self.errorbook.exist and len(self.errorbook.qs) > 0:
+            self.value1 = self.errorbook.qs[0]['value1']
+            self.sign = self.errorbook.qs[0]['sign']
+            self.value2 = self.errorbook.qs[0]['value2']
+            self.result = self.errorbook.qs[0]['result']
             return (self.errorbook.qs[0]['value1'],
                     self.errorbook.qs[0]['sign'],
                     self.errorbook.qs[0]['value2'],
@@ -84,7 +89,6 @@ class Game():
         self.sign = sign
         self.value2 = value2
         self.result = result
-        self.results_array = []
         return value1, sign, value2, result
 
     def getValuesForAdd(self):
@@ -127,6 +131,7 @@ class Game():
             self.score -= price
             self.errorbook.addErrorBook(
                 self.value1, self.sign, self.value2, self.result)
+            self.errorbook.uploadErrorBook()
             return False, price
 
     def getValuesForSubtract(self):
