@@ -32,6 +32,12 @@ class ErrorBook:
         if is_same_question == False:
             self.qs.append(error_q)
 
+    def reduceErrorCount(self, id):
+        for q in self.qs:
+            print(q)
+        print(self.qs[id])
+        self.qs[id]['error_count'] -= 1
+
     def uploadErrorBook(self):
         with open(self.filename, 'w') as fi:
             json.dump(self.qs, fi)

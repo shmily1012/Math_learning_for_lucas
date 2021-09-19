@@ -1,1 +1,1 @@
-[{"value1": 4, "sign": "Multiply", "value2": 5, "result": 20, "error_count": 1}, {"value1": 877, "sign": "Subtract", "value2": 439, "result": 438, "error_count": 1}, {"value1": 820, "sign": "Subtract", "value2": 812, "result": 8, "error_count": 1}]
+[{"value1": 4, "sign": "Multiply", "value2": 5, "result": 20, "error_count": 0}, {"value1": 877, "sign": "Subtract", "value2": 439, "result": 438, "error_count": 0}, {"value1": 820, "sign": "Subtract", "value2": 812, "result": 8, "error_count": 0}, {"value1": 589, "sign": "Subtract", "value2": 555, "result": 34, "error_count": 0}]

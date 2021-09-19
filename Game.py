@@ -37,24 +37,34 @@ class Game():
             weights.append(self.conditions[sign]['weight'])
         return max(weights)
 
+    def getRangefErrorsInBook(self):
+        range = []
+        for id, q in enumerate(self.errorbook.qs):
+            if q['error_count'] > 0:
+                range.append(id)
+        return range
+
+    def getErrorFromBook(self):
+        qIDs = self.getRangefErrorsInBook()
+        id = random.randint(0, len(qIDs)-1)
+        # print(id)
+        # print(qIDs[id])
+        self.value1 = self.errorbook.qs[qIDs[id]]['value1']
+        self.sign = self.errorbook.qs[qIDs[id]]['sign']
+        self.value2 = self.errorbook.qs[qIDs[id]]['value2']
+        self.result = self.errorbook.qs[qIDs[id]]['result']
+        return qIDs[id], self.errorbook.qs[qIDs[id]]
+
     def provideQuestions(self):
-        # for case in self.parameter['cases']:
-        #     for count in range(self.parameter['num_of_questions']):
-        #         print('current sign is', case, '. Count is ', count)
-        #         self.value1, self.sign, self.value2, self.result = self.getEachLabels(
-        #             sign=case)
-        #         self.wait_until()
-        if self.errorbook.exist and len(self.errorbook.qs) > 0:
-            self.value1 = self.errorbook.qs[0]['value1']
-            self.sign = self.errorbook.qs[0]['sign']
-            self.value2 = self.errorbook.qs[0]['value2']
-            self.result = self.errorbook.qs[0]['result']
-            return (self.errorbook.qs[0]['value1'],
-                    self.errorbook.qs[0]['sign'],
-                    self.errorbook.qs[0]['value2'],
-                    self.errorbook.qs[0]['result'])
-        else:
-            while True:
+
+        while True:
+            if self.errorbook.exist and len(self.getRangefErrorsInBook()) != 0 and self.parameter['skip_error_questions'] == False:
+                id, question = self.getErrorFromBook()
+                self.errorbook.reduceErrorCount(id)
+                self.errorbook.uploadErrorBook()
+                self.num_questions[sign] += 1
+                return question
+            else:
                 i = random.randint(0, len(self.parameter['cases'])-1)
                 sign = self.parameter["cases"][i]
                 if self.num_questions[sign] >= self.parameter['num_of_questions']:
@@ -183,3 +193,4 @@ class Game():
 
 if __name__ == '__main__':
     game = Game()
+    print(game.getErrorFromBook())

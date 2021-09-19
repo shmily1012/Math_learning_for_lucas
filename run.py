@@ -32,11 +32,15 @@ class Window(QMainWindow, Ui_MainWindow):
         self.confirmButton.setEnabled(False)
 
     def showTime(self):
+
+        if self.game.is_done:
+            return None
         self.time_left = int(self.game.single_question_duration -
                              (time.time()-self.start_time))
         self.lcdNumber.display(str(self.time_left))
         if self.time_left <= 0:
             self.clickConfirmButton()
+            return True
 
     def initConnections(self):
         self.pushButton_3.clicked.connect(self.clickStartButton)
@@ -95,8 +99,9 @@ class Window(QMainWindow, Ui_MainWindow):
         self.NextQuestion()
 
     def __del__(self):
-#        sys.exit()
-        pass
+        sys.exit(app.exec())
+        # pass
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
