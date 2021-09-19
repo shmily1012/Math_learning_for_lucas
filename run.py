@@ -95,8 +95,8 @@ class Window(QMainWindow, Ui_MainWindow):
         self.NextQuestion()
 
     def __del__(self):
-        sys.exit(app.exec())
-
+#        sys.exit()
+        pass
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
