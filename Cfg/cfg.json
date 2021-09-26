@@ -1,7 +1,7 @@
 {
-    "recall_the_fail_questions": false,
-    "num_of_questions": 2,
-    "time_duration_per_question": 15,
+    "recall_the_fail_questions": true,
+    "num_of_questions": 15,
+    "time_duration_per_question": 60,
     "skip_error_questions": false,
     "cases": [
         "Add",

@@ -62,7 +62,7 @@ class Game():
                 id, question = self.getErrorFromBook()
                 self.errorbook.reduceErrorCount(id)
                 self.errorbook.uploadErrorBook()
-                self.num_questions[sign] += 1
+                self.num_questions[self.sign] += 1
                 return question
             else:
                 i = random.randint(0, len(self.parameter['cases'])-1)
